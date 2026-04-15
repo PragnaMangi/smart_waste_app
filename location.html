@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Location Details</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f7f5;
+margin:0;
+text-align:center;
+}
+
+.header{
+background:green;
+color:white;
+padding:15px;
+font-size:20px;
+}
+
+.card{
+background:white;
+margin:30px;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+button{
+margin-top:20px;
+padding:10px 20px;
+background:green;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+Waste Location 📍
+</div>
+
+<div class="card">
+
+<h2 id="placeName"></h2>
+
+<p>This center helps in waste recycling and decomposition.</p>
+
+<p>✔ Plastic recycling<br>
+✔ Organic composting<br>
+✔ Waste sorting</p>
+
+<button onclick="goBack()">⬅ Back to Map</button>
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const place = params.get("place");
+
+document.getElementById("placeName").innerText = place;
+
+function goBack(){
+window.location.href="map.html";
+}
+
+</script>
+
+</body>
+</html>
+

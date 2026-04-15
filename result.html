@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>AI Result</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#e8f5e9;
+text-align:center;
+margin:0;
+padding:20px;
+}
+
+.header{
+background:green;
+color:white;
+padding:15px;
+font-size:22px;
+}
+
+.image{
+margin-top:30px;
+}
+
+.image img{
+height:200px;
+border-radius:15px;
+}
+
+.resultBox{
+background:white;
+padding:20px;
+border-radius:15px;
+margin-top:30px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+display:inline-block;
+}
+
+.resultTitle{
+color:grey;
+font-size:18px;
+}
+
+.resultText{
+font-size:26px;
+font-weight:bold;
+color:green;
+margin-top:10px;
+}
+
+.points{
+margin-top:30px;
+font-size:20px;
+}
+
+button{
+margin-top:30px;
+padding:12px 20px;
+font-size:16px;
+background:green;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+AI Result 🤖
+</div>
+
+<div class="image">
+<img id="wasteImage">
+</div>
+
+<div class="resultBox">
+
+<div class="resultTitle">
+Waste Type
+</div>
+
+<div id="resultText" class="resultText">
+</div>
+
+</div>
+
+<div class="points">
+🏆 Points Earned: <span id="points">10</span>
+</div>
+
+<button onclick="scanAgain()">
+Scan Again 📸
+</button>
+
+<script>
+
+const items=[
+"Plastic ♻️",
+"Paper 📄",
+"Glass 🍾",
+"Organic 🌿"
+];
+
+const image=localStorage.getItem("wasteImage");
+
+document.getElementById("wasteImage").src=image;
+
+const result=items[Math.floor(Math.random()*items.length)];
+
+document.getElementById("resultText").innerText=result;
+
+function scanAgain(){
+
+window.location.href="camera.html";
+
+}
+
+</script>
+
+</body>
+
+</html>

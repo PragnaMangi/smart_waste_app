@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Camera</title>
+
+<style>
+
+body{
+background:black;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+flex-direction:column;
+font-family:Arial;
+}
+
+video{
+width:320px;
+border-radius:10px;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+font-size:16px;
+cursor:pointer;
+border:none;
+border-radius:8px;
+background:#00c853;
+color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>Opening Camera 📷</h2>
+
+<video id="video" autoplay></video>
+
+<button onclick="capture()">Capture Waste</button>
+
+<canvas id="canvas" style="display:none"></canvas>
+
+<script>
+
+const video = document.getElementById("video");
+
+navigator.mediaDevices.getUserMedia({video:true})
+.then(stream=>{
+video.srcObject = stream;
+})
+.catch(err=>{
+alert("Camera not supported");
+});
+
+function detectWaste(){
+
+// Demo AI detection
+const wastes = [
+"Plastic Bottle ♻️",
+"Paper Waste 📄",
+"Glass Bottle 🍾",
+"Organic Waste 🌿",
+"Metal Can 🥫"
+];
+
+return wastes[Math.floor(Math.random()*wastes.length)];
+
+}
+
+function capture(){
+
+const canvas = document.getElementById("canvas");
+const context = canvas.getContext("2d");
+
+canvas.width = video.videoWidth;
+canvas.height = video.videoHeight;
+
+context.drawImage(video,0,0);
+
+const image = canvas.toDataURL("image/png");
+
+const wasteType = detectWaste();
+
+localStorage.setItem("wasteImage",image);
+localStorage.setItem("wasteType",wasteType);
+
+window.location.href="result.html";
+
+}
+
+</script>
+
+</body>
+</html>
